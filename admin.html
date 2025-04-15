@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 NeoGym 🏋️‍♂️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white flex items-center justify-center">
+    <div class="w-full max-w">
+        <div class="bg-purple-700 text-white p-6 flex items-center">
+            <img src="https://via.placeholder.com/50" alt="Logo" class="rounded-full mr-4">
+            <h1 class="text-2xl font-bold flex items-center">
+                <span class="ml-2">🤖</span> Admin NeoGym <span class="ml-2">🏋️‍♂️</span>
+            </h1>
+        </div>
+        <main>
+            <form id="novoFormulario" class="mb-4 p-4 border rounded bg-gray-200">
+                <h2 class="text-lg font-semibold mb-4">➕ Adicionar Novo Aluno 👨‍🎓</h2>
+                <div class="mb-3">
+                    <label for="novoNome" class="block text-sm font-medium text-gray-700">Nome do aluno:</label>
+                    <input type="text" id="novoNome" class="mt-1 p-2 border rounded w-full" required placeholder="Digite o nome do aluno(a)">
+                </div>
+                <div class="mb-3">
+                    <label for="novoCpf" class="block text-sm font-medium text-gray-700">CPF:</label>
+                    <input type="number" id="novoCpf" class="mt-1 p-2 border rounded w-full" required placeholder="Digite o cpf do aluno(a)">
+                </div>
+                <p class="block text-sm font-medium text-gray-700">Status:</p>
+                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Adicionar Aluno</button>
+            </form>
+    
+            <form id="atualizarFormulario" class="mb-4 p-4 border rounded bg-gray-200">
+                <h2 class="text-lg font-semibold mb-4">Editar Aluno(a)</h2>
+                <input type="hidden" id="atualizarId">
+                <div class="mb-3">
+                    <label for="atualizarNome" class="block text-sm font-medium text-gray-700">Pergunta:</label>
+                    <input type="text" id="atualizarNome" class="mt-1 p-2 border rounded w-full" required>
+                </div>
+                <div class="mb-3">
+                    <label for="atualizarCpf" class="block text-sm font-medium text-gray-700">Resposta:</label>
+                    <input type="text" id="atualizarCpf" class="mt-1 p-2 border rounded w-full" required>
+                </div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Salvar Alterações</button>
+                <button type="button" id="cancelarAtualizacao" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded ml-2">Cancelar Edição</button>
+            </form>
+            <hr>
+            <h2 class="text-lg font-semibold mb-4">Alunos Cadastrados</h2>
+            <div id="listaAlunos">
+                <p>Carregando alunos</p>
+            </div>
+    
+        </div>
+        </main>
+        <footer>
+        <div class="bg-purple-700 text-white p-6 text-center">
+            <p class="font-bold">Feito por: <a href="https://github.com/paulo-henrique-santos">Paulo Henrique</a></p>
+            <p class="font-bold">Feito por: <a href="https://github.com/juliano-amaro">Juliano Amaro</a></p>
+        </div>
+    </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
