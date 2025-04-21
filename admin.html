@@ -6,15 +6,15 @@
     <title>🤖 NeoGym 🏋️‍♂️</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white flex items-center justify-center">
+<body class="bg-white flex flex-col items-center justify-center">
     <div class="w-full max-w">
-        <div class="bg-purple-700 text-white p-6 flex items-center">
-            <img src="https://via.placeholder.com/50" alt="Logo" class="rounded-full mr-4">
+        <div class="bg-black w-full text-white p-6 flex items-center text-center justify-center">
+            <img src="neogym.png" style="height: 100%; width: 10%;" alt="Logo" class="rounded-full mr-4">
             <h1 class="text-2xl font-bold flex items-center">
                 <span class="ml-2">🤖</span> Admin NeoGym <span class="ml-2">🏋️‍♂️</span>
             </h1>
         </div>
-        <main>
+        <main class="container mx-auto p-4 flex-grow min-h-screen">
             <form id="novoFormulario" class="mb-4 p-4 border rounded bg-gray-200">
                 <h2 class="text-lg font-semibold mb-4">➕ Adicionar Novo Aluno 👨‍🎓</h2>
                 <div class="mb-3">
@@ -23,39 +23,51 @@
                 </div>
                 <div class="mb-3">
                     <label for="novoCpf" class="block text-sm font-medium text-gray-700">CPF:</label>
-                    <input type="number" id="novoCpf" class="mt-1 p-2 border rounded w-full" required placeholder="Digite o cpf do aluno(a)">
+                    <input type="text" id="novoCpf" class="mt-1 p-2 border rounded w-full" maxlength="11" required placeholder="Digite o cpf do aluno(a)">
                 </div>
-                <p class="block text-sm font-medium text-gray-700">Status:</p>
+              
                 <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Adicionar Aluno</button>
             </form>
     
-            <form id="atualizarFormulario" class="mb-4 p-4 border rounded bg-gray-200">
+            <form id="atualizarFormulario" class="mb-4 p-4 border rounded bg-gray-200 hidden">
                 <h2 class="text-lg font-semibold mb-4">Editar Aluno(a)</h2>
                 <input type="hidden" id="atualizarId">
                 <div class="mb-3">
-                    <label for="atualizarNome" class="block text-sm font-medium text-gray-700">Pergunta:</label>
+                    <label for="atualizarNome" class="block text-sm font-medium text-gray-700">Nome do Aluno:</label>
                     <input type="text" id="atualizarNome" class="mt-1 p-2 border rounded w-full" required>
                 </div>
                 <div class="mb-3">
-                    <label for="atualizarCpf" class="block text-sm font-medium text-gray-700">Resposta:</label>
-                    <input type="text" id="atualizarCpf" class="mt-1 p-2 border rounded w-full" required>
+                    <label for="atualizarCpf" class="block text-sm font-medium text-gray-700">Cpf do Aluno:</label>
+                    <input type="text" id="atualizarCpf" class="mt-1 p-2 border rounded w-full" maxlength="11" required>
+                </div>
+                <div class="mb-3">
+                    <label for="atualizarStatus" class="block text-sm font-medium text-gray-700">Cpf do Aluno:</label>
+                    <select name="atualizarStatus" id="atualizarStatus">
+                        <option value="true">Liberado</option>
+                        <option value="false">Bloqueado</option>
+                    </select>
                 </div>
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Salvar Alterações</button>
                 <button type="button" id="cancelarAtualizacao" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded ml-2">Cancelar Edição</button>
             </form>
             <hr>
-            <h2 class="text-lg font-semibold mb-4">Alunos Cadastrados</h2>
-            <div id="listaAlunos">
+            <div class="flex justify-between my-8">
+                <h2 class="text-lg font-semibold mb-4">Alunos Cadastrados</h2>
+                <form id="buscar" class="flex">
+                    <input id="busca" type="text" class="outline rounded">
+                    <button> 🔍 </button>
+                </form>
+            </div>
+            <div id="listaAlunos" class="grid grid-cols md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <p>Carregando alunos</p>
             </div>
     
         </div>
         </main>
-        <footer>
-        <div class="bg-purple-700 text-white p-6 text-center">
+        <footer class="bg-black text-white w-full  p-10 text-center">
             <p class="font-bold">Feito por: <a href="https://github.com/paulo-henrique-santos">Paulo Henrique</a></p>
             <p class="font-bold">Feito por: <a href="https://github.com/juliano-amaro">Juliano Amaro</a></p>
-        </div>
+       
     </footer>
     </div>
     <script src="script.js"></script>

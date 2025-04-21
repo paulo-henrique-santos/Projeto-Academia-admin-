@@ -1,5 +1,5 @@
 const ENDPOINT_ALUNOS = 'https://neo-gym-backend.vercel.app/academia'
-const ENDPOINT_LISTA_TODAS = "http://127.0.0.1:5000/academia/lista"
+
 
 // Formulário da criação
 let criarFormulario = document.getElementById('novoFormulario')
@@ -11,6 +11,7 @@ let formularioAtualizacao = document.getElementById('atualizarFormulario')
 let inputAtualizarId = document.getElementById('atualizarId')
 let inputAtualizarNome = document.getElementById('atualizarNome')
 let inputAtualizarCpf = document.getElementById('atualizarCpf')
+let inputAtualizarStatus = document.getElementById('atualizarStatus')
 let botaoCancelarAtualizacao = document.getElementById('cancelarAtualizacao')
 
 // Lista onde os alunos serão exibidos
@@ -27,16 +28,17 @@ async function buscarListarAlunos() {
     listaAlunos.innerHTML = '<p>Carregando alunos...</p>'
 
     try {
-        const respostaHttp = await fetch(ENDPOINT_LISTA_TODAS)
-
+        const respostaHttp = await fetch(ENDPOINT_ALUNOS)
+        console.log(respostaHttp)
         if(!respostaHttp){
             throw new Error(`Erro na API: ${respostaHttp.status} ${respostaHttp.statusText}`)
         }
 
         const alunos = await respostaHttp.json()
 
-        console.log("Alunos recebidos: ",alunos)
+        console.log("Alunos recebidos: ", alunos)
         
+    
         exibirAlunosNaTela(alunos)
 
     } catch (erro) {
@@ -61,7 +63,8 @@ async function criarAluno(evento) {
 
     const novoAluno = {
         nome: nome,
-        cpf: cpf
+        cpf: cpf,
+        status: true
     }
 
     try {
@@ -101,10 +104,12 @@ async function atualizarAluno(evento) {
     const id = inputAtualizarId.value
     const nome = inputAtualizarNome.value
     const cpf = inputAtualizarCpf.value
+    const status = inputAtualizarStatus.value
 
     const dadosAlunoAtualizada = {
         nome: nome,
-        cpf: cpf
+        cpf: cpf,
+        status: status
     }
 
     if (!id) {
@@ -119,7 +124,7 @@ async function atualizarAluno(evento) {
     }
 
     try {
-        const respostaHttp = await fetch(`${ENDPOINT_ALUNOS}/${id}`, {
+        const respostaHttp = await fetch(`${ENDPOINT_ALUNOS}/update/aluno/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -155,7 +160,7 @@ async function excluirAluno(id) {
     }
 
     try {
-        const respostaHttp = await fetch(`${ENDPOINT_ALUNOS}/${id}`, {
+        const respostaHttp = await fetch(`${ENDPOINT_ALUNOS}/delete/aluno/${id}`, {
             method: 'DELETE'
         })
 
@@ -180,8 +185,11 @@ async function excluirAluno(id) {
 // FUNÇÕES PARA ATUALIZAR A PÁGINA
 // ===============================
 
+
+
 // --- Mostrar as alunos na lista ---
 function exibirAlunosNaTela(alunos) {
+
     console.log("Atualizando a lista de alunos na tela...")
     listaAlunos.innerHTML = ''
 
@@ -191,33 +199,48 @@ function exibirAlunosNaTela(alunos) {
     }
 
     for (const aluno of alunos) {
+
+        let aluno_status = aluno.status
+        console.log("O status é:"+aluno_status)
+
+        let status = ''
+
+        if (aluno_status == 'true' || aluno_status == true) {
+            status = 'Liberado'
+        }else {
+            status = 'Bloqueado'
+        }
+        
+
         const elementoAlunoDiv = document.createElement('div')
         elementoAlunoDiv.classList.add('border', 'border-gray-300', 'p-2', 'mb-3', 'rounded', 'flex', 'justify-between', 'items-center')
         elementoAlunoDiv.id = `aluno-${aluno.id}`
-    
+
         elementoAlunoDiv.innerHTML = `
-            <div class="flex-grow mr-3">
-                <strong>${aluno.nome}</strong>
-                <p><small>Resposta: ${aluno.cpf || 'Não definida'}</small></p>
-                <p><small>Status: ${aluno.status}</small></p>
-                <p><small>Id: ${aluno.id}</small></p>
-            </div>
-            <div>
-                <button class="edit-btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-1 px-2 rounded text-sm ml-1">Editar</button>
-                <button class="delete-btn bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded text-sm ml-1">Excluir</button>
+            <div class="bg-white rounded-lg shadown-md p-4 flex justify-between">
+                <div class="w-64 mr-3">
+                    <strong>${aluno.nome}</strong>
+                    <p><small>Cpf: ${aluno.cpf || 'Não definida'}</small></p>
+                    <p><small>Status: ${status}</small></p>
+                    <p><small>Id: ${aluno.id}</small></p>
+                </div>
+                <div class="w-32">
+                    <button class="edit-btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-1 px-2 rounded text-sm ml-1">Editar</button>
+                    <button class="delete-btn bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded text-sm ml-1">Excluir</button>
+                </div>
             </div>
         `
     
         const botaoEditar = elementoAlunoDiv.querySelector('.edit-btn')
         botaoEditar.addEventListener('click', function() {
             console.log(`Botão Editar clicado para o aluno ID: ${aluno.id}`)
-            exibirFormularioAtualizacao(aluno.id, aluno.pergunta, aluno.resposta)
+            exibirFormularioAtualizacao(aluno.id, aluno.nome, aluno.cpf)
         })
     
         const botaoExcluir = elementoAlunoDiv.querySelector('.delete-btn')
         botaoExcluir.addEventListener('click', function() {
             console.log(`Botão Excluir clicado para a aluno ID: ${aluno.id}`)
-            excluiraluno(aluno.id)
+            excluirAluno(aluno.id)
         })
     
         listaAlunos.appendChild(elementoAlunoDiv)
@@ -231,8 +254,8 @@ function exibirFormularioAtualizacao(id, nome, cpf) {
     inputAtualizarNome.value = nome
     inputAtualizarCpf.value = cpf
 
-    formularioAtualizacao.classList.remove('hidden')
-    formularioCriacao.classList.add('hidden')
+    atualizarFormulario.classList.remove('hidden')
+    novoFormulario.classList.add('hidden')
 
     formularioAtualizacao.scrollIntoView({ behavior: 'smooth' })
 }
@@ -240,8 +263,8 @@ function exibirFormularioAtualizacao(id, nome, cpf) {
 // Esconder o formulário de atualização
 function esconderFormularioAtualizacao() {
     console.log("Escondendo formulário de atualização.")
-    formularioAtualizacao.classList.add('hidden')
-    formularioCriacao.classList.remove('hidden')
+    atualizarFormulario.classList.add('hidden')
+    novoFormulario.classList.remove('hidden')
 
     inputAtualizarId.value = ''
     inputAtualizarNome.value = ''
@@ -253,8 +276,8 @@ function esconderFormularioAtualizacao() {
 // EVENT LISTENERS GLOBAIS (Campainhas principais da página)
 // ==============================================================
 
-formularioCriacao.addEventListener('submit',criarAluno)
-formularioAtualizacao.addEventListener('submit', atualizarAluno)
+novoFormulario.addEventListener('submit', criarAluno)
+atualizarFormulario.addEventListener('submit', atualizarAluno)
 botaoCancelarAtualizacao.addEventListener('click', esconderFormularioAtualizacao)
 
 // INICIALIZAÇÃO DA PÁGINA
