@@ -305,7 +305,7 @@ function exibirAlunosNaTela(alunos) {
                     <p><small>Status: ${status}</small></p>
                     <p><small>Id: ${aluno.id}</small></p>
                 </div>
-                <div class="w-48 place-content-center justify-end">
+                <div class="w-48 place-content-center justify-end items-end">
                     <button class="edit-btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-1 px-2 rounded text-sm ml-1">Editar</button>
                     <button class="delete-btn bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded text-sm ml-1">Excluir</button>
                 </div>
