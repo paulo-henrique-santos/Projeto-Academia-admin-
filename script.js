@@ -158,7 +158,7 @@ async function buscarAluno(){
     
         const botaoEditar = elementoAlunoDiv.querySelector('.edit-btn')
         botaoEditar.addEventListener('click', function() {
-            console.log(`Botão Editar clicado para o aluno ID: ${aluno.id}`)
+            console.log(`Botão Editar clicado para o aluno ID: ${nomeJson.aluno.id}`)
             exibirFormularioAtualizacao(nomeJson.aluno.id, nomeJson.aluno.nome, nomeJson.aluno.cpf)
         })
     
