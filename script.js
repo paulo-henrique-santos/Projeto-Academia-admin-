@@ -298,15 +298,15 @@ function exibirAlunosNaTela(alunos) {
         elementoAlunoDiv.id = `aluno-${aluno.id}`
 
         elementoAlunoDiv.innerHTML = `
-            <div class="bg-white rounded-lg shadown-md p-4 flex ">
+            <div class="bg-white rounded-lg shadow-md p-4 flex justify-between ">
                 <div class="w-48 ">
                     <strong>${aluno.nome}</strong>
                     <p><small>Cpf: ${aluno.cpf || 'Não definida'}</small></p>
                     <p><small>Status: ${status}</small></p>
                     <p><small>Id: ${aluno.id}</small></p>
                 </div>
-                <div class="w-48 place-content-center justify-end items-end">
-                    <button class="edit-btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-1 px-2 rounded text-sm ml-1">Editar</button>
+                <div class="w-48 place-content-center flex flex-col justify-between items-end  ml-12">
+                    <button class="edit-btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-1 px-2 rounded text-sm ml-1 mb-2">Editar</button>
                     <button class="delete-btn bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded text-sm ml-1">Excluir</button>
                 </div>
             </div>
