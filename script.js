@@ -142,7 +142,7 @@ async function buscarAluno(){
         elementoAlunoDiv.classList.add('border', 'border-gray-300', 'mb-3', 'rounded', 'flex', 'justify-between', 'items-center')
 
         elementoAlunoDiv.innerHTML = `
-            <div class="bg-white rounded-lg shadow-md p-4 flex justify-between w-full">
+            <div class="bg-white rounded-lg shadow-md p-4 flex justify-between w-full h-full">
                 <div class="w-48">
                     <strong>${nomeJson.aluno.nome}</strong>
                     <p><small>Cpf: ${nomeJson.aluno.cpf || 'Não definida'}</small></p>
@@ -298,7 +298,7 @@ function exibirAlunosNaTela(alunos) {
         elementoAlunoDiv.id = `aluno-${aluno.id}`
 
         elementoAlunoDiv.innerHTML = `
-            <div class="bg-white rounded-lg shadow-md p-4 flex justify-between w-full">
+            <div class="bg-white rounded-lg shadow-md p-4 flex justify-between w-full h-full">
                 <div class="w-48 ">
                     <strong>${aluno.nome}</strong>
                     <p><small>Cpf: ${aluno.cpf || 'Não definida'}</small></p>
