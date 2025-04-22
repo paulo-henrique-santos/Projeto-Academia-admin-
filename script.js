@@ -139,18 +139,18 @@ async function buscarAluno(){
         }
         
         const elementoAlunoDiv = document.createElement('div')
-        elementoAlunoDiv.classList.add('border', 'border-gray-300', 'p-2', 'mb-3', 'rounded', 'flex', 'justify-between', 'items-center')
+        elementoAlunoDiv.classList.add('border', 'border-gray-300', 'mb-3', 'rounded', 'flex', 'justify-between', 'items-center')
 
         elementoAlunoDiv.innerHTML = `
-            <div class="bg-white rounded-lg shadown-md p-4 flex justify-between">
+            <div class="bg-white rounded-lg shadow-md p-4 flex justify-between w-full">
                 <div class="w-48">
                     <strong>${nomeJson.aluno.nome}</strong>
                     <p><small>Cpf: ${nomeJson.aluno.cpf || 'Não definida'}</small></p>
                     <p><small>Status: ${status}</small></p>
                     <p><small>Id: ${nomeJson.aluno.id}</small></p>
                 </div>
-                <div class="w-48 place-content-center justify-end">
-                    <button class="edit-btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-1 px-2 rounded text-sm ml-12">Editar</button>
+                <div class="w-48 place-content-center justify-between flex flex-col items-end ml-12">
+                    <button class="edit-btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-1 px-2 rounded text-sm ml-1 mb-2">Editar</button>
                     <button class="delete-btn bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded text-sm ml-1">Excluir</button>
                 </div>
             </div>
