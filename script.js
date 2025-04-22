@@ -138,10 +138,6 @@ async function buscarAluno(){
             status = 'Bloqueado'
         }
         
-
-        const elementoAlunoH2 = document.createElement('h2')
-        
-
         const elementoAlunoDiv = document.createElement('div')
         elementoAlunoDiv.classList.add('border', 'border-gray-300', 'p-2', 'mb-3', 'rounded', 'flex', 'justify-between', 'items-center')
 
@@ -310,7 +306,7 @@ function exibirAlunosNaTela(alunos) {
                     <p><small>Id: ${aluno.id}</small></p>
                 </div>
                 <div class="w-48 place-content-center justify-end">
-                    <button class="edit-btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-1 px-2 rounded text-sm ml-12">Editar</button>
+                    <button class="edit-btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-1 px-2 rounded text-sm ml-1">Editar</button>
                     <button class="delete-btn bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded text-sm ml-1">Excluir</button>
                 </div>
             </div>
