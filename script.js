@@ -294,11 +294,11 @@ function exibirAlunosNaTela(alunos) {
         
 
         const elementoAlunoDiv = document.createElement('div')
-        elementoAlunoDiv.classList.add('border', 'border-gray-300', 'p-2', 'mb-3', 'rounded', 'flex', 'justify-between', 'items-center')
+        elementoAlunoDiv.classList.add('border', 'border-gray-300',  'mb-3', 'rounded', 'flex', 'justify-between', 'items-center')
         elementoAlunoDiv.id = `aluno-${aluno.id}`
 
         elementoAlunoDiv.innerHTML = `
-            <div class="bg-white rounded-lg shadow-md p-4 flex justify-between ">
+            <div class="bg-white rounded-lg shadow-md p-4 flex justify-between w-full">
                 <div class="w-48 ">
                     <strong>${aluno.nome}</strong>
                     <p><small>Cpf: ${aluno.cpf || 'Não definida'}</small></p>
