@@ -159,13 +159,13 @@ async function buscarAluno(){
         const botaoEditar = elementoAlunoDiv.querySelector('.edit-btn')
         botaoEditar.addEventListener('click', function() {
             console.log(`Botão Editar clicado para o aluno ID: ${aluno.id}`)
-            exibirFormularioAtualizacao(aluno.id, aluno.nome, aluno.cpf)
+            exibirFormularioAtualizacao(nomeJson.aluno.id, nomeJson.aluno.nome, nomeJson.aluno.cpf)
         })
     
         const botaoExcluir = elementoAlunoDiv.querySelector('.delete-btn')
         botaoExcluir.addEventListener('click', function() {
-            console.log(`Botão Excluir clicado para a aluno ID: ${aluno.id}`)
-            excluirAluno(aluno.id)
+            console.log(`Botão Excluir clicado para a aluno ID: ${nomeJson.aluno.id}`)
+            excluirAluno(nomeJson.aluno.id)
         })
     
         alunoBuscado.appendChild(elementoAlunoDiv)
