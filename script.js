@@ -14,8 +14,13 @@ let inputAtualizarCpf = document.getElementById('atualizarCpf')
 let inputAtualizarStatus = document.getElementById('atualizarStatus')
 let botaoCancelarAtualizacao = document.getElementById('cancelarAtualizacao')
 
+
 // Lista onde os alunos serão exibidos
 let listaAlunos = document.getElementById('listaAlunos')
+
+// Onde aparacerá os alunos da busca
+let alunoBuscado = document.getElementById('alunoBuscado')
+
 
 // ===============================
 // FUNÇÕES PARA INTERAGIR COM API 
@@ -95,6 +100,86 @@ async function criarAluno(evento) {
         alert(`Erro ao criar aluno: ${erro.message}`)
     }
 }
+// Buscar aluno pelo nome
+async function buscarAluno(){
+    let nomeAluno = document.getElementById('busca-aluno').value
+    
+    let nome = nomeAluno
+    const nomeBusca = {
+        nome:nome
+    }
+
+    if (!nome) {
+        alert('Por favor! Insira um nome')
+        return
+    }
+
+    try {
+        const respostaHttp = await fetch(`${ENDPOINT_ALUNOS}/consulta/nome`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(nomeBusca)
+        })
+
+        const nomeJson = await respostaHttp.json()
+
+        console.log(nomeJson)
+
+        let aluno_status = nomeJson.aluno.status
+        console.log("O status é:"+aluno_status)
+
+        let status = ''
+
+        if (aluno_status == 'true' || aluno_status == true) {
+            status = 'Liberado'
+        }else {
+            status = 'Bloqueado'
+        }
+        
+
+        const elementoAlunoH2 = document.createElement('h2')
+        
+
+        const elementoAlunoDiv = document.createElement('div')
+        elementoAlunoDiv.classList.add('border', 'border-gray-300', 'p-2', 'mb-3', 'rounded', 'flex', 'justify-between', 'items-center')
+
+        elementoAlunoDiv.innerHTML = `
+            <div class="bg-white rounded-lg shadown-md p-4 flex justify-between">
+                <div class="w-48">
+                    <strong>${nomeJson.aluno.nome}</strong>
+                    <p><small>Cpf: ${nomeJson.aluno.cpf || 'Não definida'}</small></p>
+                    <p><small>Status: ${status}</small></p>
+                    <p><small>Id: ${nomeJson.aluno.id}</small></p>
+                </div>
+                <div class="w-48 place-content-center justify-end">
+                    <button class="edit-btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-1 px-2 rounded text-sm ml-12">Editar</button>
+                    <button class="delete-btn bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded text-sm ml-1">Excluir</button>
+                </div>
+            </div>
+        `
+    
+        const botaoEditar = elementoAlunoDiv.querySelector('.edit-btn')
+        botaoEditar.addEventListener('click', function() {
+            console.log(`Botão Editar clicado para o aluno ID: ${aluno.id}`)
+            exibirFormularioAtualizacao(aluno.id, aluno.nome, aluno.cpf)
+        })
+    
+        const botaoExcluir = elementoAlunoDiv.querySelector('.delete-btn')
+        botaoExcluir.addEventListener('click', function() {
+            console.log(`Botão Excluir clicado para a aluno ID: ${aluno.id}`)
+            excluirAluno(aluno.id)
+        })
+    
+        alunoBuscado.appendChild(elementoAlunoDiv)
+
+    }catch(erro) {
+        alert(`ERRO! Erro ao buscar o aluno ${erro.message}`)
+    }
+
+}
+
 
 // Atualizar um aluno existente
 async function atualizarAluno(evento) {
@@ -217,15 +302,15 @@ function exibirAlunosNaTela(alunos) {
         elementoAlunoDiv.id = `aluno-${aluno.id}`
 
         elementoAlunoDiv.innerHTML = `
-            <div class="bg-white rounded-lg shadown-md p-4 flex justify-between">
-                <div class="w-64 mr-3">
+            <div class="bg-white rounded-lg shadown-md p-4 flex ">
+                <div class="w-48 ">
                     <strong>${aluno.nome}</strong>
                     <p><small>Cpf: ${aluno.cpf || 'Não definida'}</small></p>
                     <p><small>Status: ${status}</small></p>
                     <p><small>Id: ${aluno.id}</small></p>
                 </div>
-                <div class="w-32">
-                    <button class="edit-btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-1 px-2 rounded text-sm ml-1">Editar</button>
+                <div class="w-48 place-content-center justify-end">
+                    <button class="edit-btn bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-1 px-2 rounded text-sm ml-12">Editar</button>
                     <button class="delete-btn bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded text-sm ml-1">Excluir</button>
                 </div>
             </div>

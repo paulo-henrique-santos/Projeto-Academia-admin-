@@ -40,7 +40,7 @@
                     <label for="atualizarCpf" class="block text-sm font-medium text-gray-700">Cpf do Aluno:</label>
                     <input type="text" id="atualizarCpf" class="mt-1 p-2 border rounded w-full" maxlength="11" required>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 flex-grow">
                     <label for="atualizarStatus" class="block text-sm font-medium text-gray-700">Cpf do Aluno:</label>
                     <select name="atualizarStatus" id="atualizarStatus">
                         <option value="true">Liberado</option>
@@ -51,15 +51,23 @@
                 <button type="button" id="cancelarAtualizacao" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded ml-2">Cancelar Edição</button>
             </form>
             <hr>
-            <div class="flex justify-between my-8">
-                <h2 class="text-lg font-semibold mb-4">Alunos Cadastrados</h2>
-                <form id="buscar" class="flex">
-                    <input id="busca" type="text" class="outline rounded">
-                    <button> 🔍 </button>
-                </form>
-            </div>
-            <div id="listaAlunos" class="grid grid-cols md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <p>Carregando alunos</p>
+            <div class="container flex flex-col">
+                <div class="flex justify-between my-8">
+                    <h2 class="text-xl font-semibold mb-4">Alunos Cadastrados</h2>
+                    <div id="buscar-aluno" class="flex">
+                        <input id="busca-aluno" placeholder="Insira o nome do aluno..." type="text" class="w-80 p-2 outline rounded">
+                        <button onclick="buscarAluno()" class="bg-violet-600 hover:bg-violet-900 text-white font-bold py-2 px-4 rounded ml-2"> <img width="35px" height="35px" src="lupa.png"> </button>
+                    </div>
+                </div>
+                <div id="alunoBuscado" class="mt-3 grid grid-cols m-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                
+                </div>
+                <hr>
+               
+                <div id="listaAlunos" class="mt-5 grid grid-cols m-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    
+                    <p>Carregando alunos</p>
+                </div>
             </div>
     
         </div>
