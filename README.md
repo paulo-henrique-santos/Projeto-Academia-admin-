@@ -69,7 +69,9 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para m
 ## Outros
 Veja o FrontEnd da versão do cliente desse projeto!
 https://github.com/paulo-henrique-santos/Projeto-Academia.git
+
 Link da Vercel!
 projeto-academia-admin.vercel.app
+
 Veja o BackEnd desse projeto!
 https://github.com/juliano-amaro/NeoGYM_backend.git
