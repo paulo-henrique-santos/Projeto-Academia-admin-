@@ -3,6 +3,8 @@
 
 **Descrição:**
 O site "NeoGym" foi criado para testar a minha habilidade de API RESTFUL, então criei esse site básico para diversão.
+
+Veja a nossa apresentação: https://www.canva.com/design/DAGlTAEqhmY/AV04d8dt3uUwhdSzs7TLFA/edit?utm_content=DAGlTAEqhmY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 ## Índice
 * [Funcionalidades](#funcionalidades)
 * [Tecnologias Utilizadas](#tecnologias-utilizadas)
