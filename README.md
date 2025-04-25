@@ -11,7 +11,10 @@ O site "NeoGym" foi criado para testar a minha habilidade de API RESTFUL, então
 * [Licença](#licença)
 * [Outros](#outros)
 ## Funcionalidades
- - Sistema de verificador de cpf
+ - Sistema de criar um novo aluno
+ - Sistema de editar um aluno
+ - Sistema de liberar um aluno de entrar
+ - Sistema de bloquear um aluno de entrar
 ## Tecnologias Utilizadas
 - **Linguagem/Frameworks:**
  Liste as principais tecnologias usadas no projeto, como por exemplo:
